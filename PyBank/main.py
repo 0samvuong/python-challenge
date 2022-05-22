@@ -3,6 +3,8 @@ import csv
 
 # Path to collect data from the Resources folder
 budget_csv = os.path.join('Resources', 'budget_data.csv')
+#Path to export
+report_txt = os.path.join('analysis', 'report.txt')
 
 # Analysis function, argument takes in a row and
 
@@ -54,11 +56,18 @@ with open(budget_csv, 'r') as csvfile:
 
      # calculating average change of profits  (outside of loop)
     average_change = total_change / (months_total - 1)
-    #output
-    print(f"Financial Analysis by Sam Vuong")
-    print(f"--------------------------------")
-    print(f"Total Months: {months_total}")
-    print(f"Total: ${round(money_total,2)}")
-    print(f"Average Change: ${round(average_change,2)}")
-    print(f"Greatest Increase in Profits: ${gi_name} (${round(gi_value,2)})")
-    print(f"Greatest Decrease in Profits: ${gd_name} (${round(gd_value,2)})")
+
+    #writing to txt 
+    f = open(report_txt, "w")
+
+    f.write(f"Financial Analysis by Sam Vuong \n")
+    f.write(f"--------------------------------\n")
+    f.write(f"Total Months: {months_total}\n")
+    f.write(f"Total: ${round(money_total,2)}\n")
+    f.write(f"Average Change: ${round(average_change,2)}\n")
+    f.write(f"Greatest Increase in Profits: ${gi_name} (${round(gi_value,2)})\n")
+    f.write(f"Greatest Decrease in Profits: ${gd_name} (${round(gd_value,2)})\n")
+
+    #read txt in terminal
+    f = open(report_txt, "r")
+    print(f.read())
